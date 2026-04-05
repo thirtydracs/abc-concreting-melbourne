@@ -1,1 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title id="pageTitle">ABC Concreting Melbourne</title>
+  <meta name="description" id="metaDescription" content="Reliable concreting services in Melbourne." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero" id="heroSection">
+    <div class="overlay">
+      <div class="wrap">
+        <div class="topbar">
+          <div class="brand">
+            <img id="logoImage" class="logo" src="" alt="Business logo" />
+            <div class="brand-text">
+              <div class="brand-name" id="businessNameTop">ABC Concreting Melbourne</div>
+              <div class="brand-tag" id="brandTag">Concreting Services</div>
+            </div>
+          </div>
+
+          <div class="top-actions">
+            <a id="callTop" class="btn btn-light" href="#">Call Now</a>
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <p class="eyebrow" id="heroEyebrow">Concreter in Melbourne</p>
+          <h1 id="heroTitle">Concrete Driveways, Slabs & Paths</h1>
+          <p class="hero-text" id="heroText">
+            Quality concreting work for residential and commercial jobs across Melbourne.
+          </p>
+
+          <div class="hero-buttons">
+            <a id="callBtn" class="btn btn-primary" href="#">Call Now</a>
+            <a id="emailBtn" class="btn btn-outline" href="#">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About Us</h2>
+      </div>
+      <div class="single-card">
+        <p id="aboutText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Services</h2>
+      </div>
+      <div class="grid three-col" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why Choose Us</h2>
+      </div>
+      <div class="grid three-col" id="featuresGrid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Recent Work</h2>
+      </div>
+      <div class="grid three-col" id="workGrid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Areas Serviced</h2>
+      </div>
+      <div class="areas" id="areasList"></div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <div class="contact-box">
+        <div class="contact-left">
+          <p class="eyebrow light">Get in touch</p>
+          <h2>Need a quote?</h2>
+          <p id="contactText">
+            Contact us today for reliable concreting services and fast turnaround.
+          </p>
+        </div>
+
+        <div class="contact-right">
+          <div class="contact-card">
+            <p><strong>Phone</strong></p>
+            <p><a id="phoneLink" href="#"></a></p>
+
+            <p><strong>Email</strong></p>
+            <p><a id="emailLink" href="#"></a></p>
+
+            <p><strong>Location</strong></p>
+            <p id="serviceAreaText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-wrap">
+      <div>
+        <strong id="footerBusinessName">ABC Concreting Melbourne</strong>
+        <p id="footerText"></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById("pageTitle").textContent = data.seoTitle;
+    document.getElementById("metaDescription").setAttribute("content", data.seoDescription);
+
+    document.getElementById("businessNameTop").textContent = data.businessName;
+    document.getElementById("brandTag").textContent = data.brandTag;
+    document.getElementById("heroEyebrow").textContent = data.eyebrow;
+    document.getElementById("heroTitle").textContent = data.heroTitle;
+    document.getElementById("heroText").textContent = data.heroText;
+    document.getElementById("aboutText").textContent = data.about;
+    document.getElementById("contactText").textContent = data.contactText;
+    document.getElementById("serviceAreaText").textContent = data.serviceAreaText;
+    document.getElementById("footerBusinessName").textContent = data.businessName;
+    document.getElementById("footerText").textContent = "© " + new Date().getFullYear() + " " + data.businessName + ". All rights reserved.";
+
+    document.getElementById("heroSection").style.backgroundImage = `url('${data.heroImage}')`;
+
+    const logoImage = document.getElementById("logoImage");
+    if (data.logoImage) {
+      logoImage.src = data.logoImage;
+      logoImage.style.display = "block";
+    } else {
+      logoImage.style.display = "none";
+    }
+
+    const callHref = "tel:" + data.phoneRaw;
+    const emailHref = "mailto:" + data.email + "?subject=" + encodeURIComponent(data.emailSubject);
+
+    document.getElementById("callTop").href = callHref;
+    document.getElementById("callBtn").href = callHref;
+    document.getElementById("emailBtn").href = emailHref;
+
+    document.getElementById("phoneLink").href = callHref;
+    document.getElementById("phoneLink").textContent = data.phoneDisplay;
+
+    document.getElementById("emailLink").href = "mailto:" + data.email;
+    document.getElementById("emailLink").textContent = data.email;
+
+    const servicesGrid = document.getElementById("servicesGrid");
+    data.services.forEach(service => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${service.title}</h3>
+        <p>${service.text}</p>
+      `;
+      servicesGrid.appendChild(card);
+    });
+
+    const featuresGrid = document.getElementById("featuresGrid");
+    data.features.forEach(feature => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${feature.title}</h3>
+        <p>${feature.text}</p>
+      `;
+      featuresGrid.appendChild(card);
+    });
+
+    const workGrid = document.getElementById("workGrid");
+    data.recentWork.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" class="work-image">
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      `;
+      workGrid.appendChild(card);
+    });
+
+    const areasList = document.getElementById("areasList");
+    data.areas.forEach(area => {
+      const pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = area;
+      areasList.appendChild(pill);
+    });
+  </script>
+</body>
+</html>
