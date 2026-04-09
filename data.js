@@ -10,7 +10,7 @@ const data = {
   about: "ABC Concreting Melbourne delivers clean, reliable concreting work for residential and commercial clients. We focus on quality finishes, solid prep, clear communication and getting the job done right from start to finish.",
   contactText: "Call or email us for a quote on your next concrete job. We service Melbourne and surrounding areas.",
   phoneRaw: "0412338652",
-  phoneDisplay: "0400 000 000",
+  phoneDisplay: "0412 338 652",
   email: "info@abcconcretingmelbourne.com.au",
   emailSubject: "Quote Request",
   serviceAreaText: "Melbourne and surrounding suburbs",
